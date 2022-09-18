@@ -4,6 +4,10 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * 公共分页参数
+ * @param <T>
+ */
 @Data
 public class ResultPage<T> {
     private Integer current;

@@ -2,6 +2,10 @@ package com.wyhwy.diagnosis_backend;
 
 import lombok.Data;
 
+/**
+ * http的公共相应体
+ * @param <T>
+ */
 @Data
 public class HttpResult <T> {
     private int code;
