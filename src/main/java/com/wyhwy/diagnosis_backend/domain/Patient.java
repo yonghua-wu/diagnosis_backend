@@ -1,8 +1,10 @@
 package com.wyhwy.diagnosis_backend.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class Patient extends Base{
     private String patientName;
     private Integer patientGender;
