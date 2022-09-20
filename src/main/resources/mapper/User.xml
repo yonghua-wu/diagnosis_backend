@@ -12,12 +12,16 @@
 <!--        <result column="phone" property="phone" javaType="String" />-->
 <!--    </resultMap>-->
 
-    <select id="findByUsername" resultType="com.wyhwy.diagnosis_backend.User">
-        SELECT * FROM user WHERE username=#{username}
-    </select>
+<!--    <select id="findByUsername" resultType="com.wyhwy.diagnosis_backend.User">-->
+<!--        SELECT * FROM user WHERE username=#{username}-->
+<!--    </select>-->
 
-    <select id="findUserById" resultType="com.wyhwy.diagnosis_backend.User">
-        SELECT * FROM user WHERE id=#{id}
+<!--    <select id="findUserById" resultType="com.wyhwy.diagnosis_backend.User">-->
+<!--        SELECT * FROM user WHERE id=#{id}-->
+<!--    </select>-->
+
+    <select id="login" parameterType="map" resultType="java.lang.Integer">
+        SELECT u.id FROM user u WHERE u.username = #{username} and u.password = #{password}
     </select>
 
 

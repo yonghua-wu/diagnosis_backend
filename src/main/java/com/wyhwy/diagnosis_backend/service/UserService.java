@@ -1,20 +1,13 @@
 package com.wyhwy.diagnosis_backend.service;
 
 import com.wyhwy.diagnosis_backend.domain.User;
-import com.wyhwy.diagnosis_backend.mapper.UserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
-public class UserService {
+import javax.servlet.http.HttpSession;
 
-    @Autowired
-    UserMapper userMapper;
-    public User findByUsername(User user){
-        return userMapper.findByUsername(user.getUsername());
-    }
-    public User findUserById(Integer userId){
-        return userMapper.findUserById(userId);
-    }
+public interface UserService {
+//    public User findByUsername(User user);
+//
+//    public User findUserById(Integer userId);
 
+    void login(User user);
 }

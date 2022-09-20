@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.wyhwy.diagnosis_backend.mapper.CasebookMapper">
+
+    <resultMap id="baseResultMap" type="com.wyhwy.diagnosis_backend.po.CasebookPo">
+        <result column="id" property="id" />
+        <result column="patient_description" property="patientDescription" />
+        <result column="diagnostic_status" property="diagnosticStatus" />
+        <result column="rvs_identification_result" property="rvsIdentificationResult" />
+        <result column="doctorAdvice" property="doctorAdvice" />
+        <result column="ma_identification_result" property="maIdentificationResult" />
+        <result column="doctor_advice" property="doctorAdvice" />
+        <result column="remark" property="remark"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="updated_by" property="updatedBy"/>
+        <result column="updated_time" property="updatedTime"/>
+    </resultMap>
+    <select id="findById" parameterType="java.lang.Integer" resultMap="baseResultMap">
+        SELECT
+        *
+        FROM
+        casebook  b
+        WHERE
+        b.id = #{id}
+    </select>
+</mapper>
