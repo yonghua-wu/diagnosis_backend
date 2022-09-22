@@ -26,4 +26,10 @@
         WHERE
         b.id = #{id}
     </select>
+    <select id="select" resultMap="baseResultMap">
+        SELECT * FROM casebook LIMIT #{start}, #{len}
+    </select>
+    <select id="count" resultType="Integer">
+        SELECT COUNT(*) FROM casebook
+    </select>
 </mapper>

@@ -14,13 +14,19 @@ public interface CasebookMapper {
      */
     CasebookPo findById(Integer id);
 
-//    /**
-//     * 分页查询
-//     * @param current 当前页
-//     * @param size 页大小
-//     * @return 返回 list
-//     */
-//    List<Casebook> select(Integer current, Integer size);
+    /**
+     * 分页查询
+     * @param start 开始位置
+     * @param len 页大小
+     * @return 返回 list
+     */
+    List<CasebookPo> select(Integer start, Integer len);
+
+    /**
+     * 统计条数
+     * @return
+     */
+    Integer count();
 //
 //    /**
 //     * 创建

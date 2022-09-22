@@ -7,5 +7,5 @@ import com.wyhwy.diagnosis_backend.po.CasebookPo;
 
 public interface CasebookService {
     HttpResult<CasebookPo> findById(Integer id);
-//    HttpResult<ResultPage<Casebook>> page(Integer current, Integer size);
+    HttpResult<ResultPage<CasebookPo>> page(Integer current, Integer size);
 }
