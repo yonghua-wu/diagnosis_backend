@@ -8,6 +8,6 @@ public interface UserMapper {
 //    void insert(User user);
 //    User findByUsername(String username);
 //    User findUserById(Integer Id);
-    Integer login(User user);
+    User login(User user);
 
 }

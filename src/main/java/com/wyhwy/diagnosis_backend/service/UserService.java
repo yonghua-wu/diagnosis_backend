@@ -9,5 +9,5 @@ public interface UserService {
 //
 //    public User findUserById(Integer userId);
 
-    void login(User user);
+    User login(User user);
 }

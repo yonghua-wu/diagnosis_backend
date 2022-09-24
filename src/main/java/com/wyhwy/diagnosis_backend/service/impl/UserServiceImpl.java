@@ -26,22 +26,16 @@ public class UserServiceImpl implements UserService{
 //    }
 
     @Override
-    public void login(User user) {
-        try {
-            Integer id = userMapper.login(user);
-            if(id == null){
-                System.out.println("用户名或密码错误");
+    public User login(User user) {
+        User userDB = userMapper.login(user);
+        System.out.println("userDB: "+ userDB);
+        if(userDB != null) {
+//                System.out.println("用户名或密码错误");
 //                session.setAttribute("msg", "用户名或密码错误");
-            }else{
-                System.out.println(id);
-//                session.setAttribute("msg", "登录成功");
-            }
-        }catch (Exception e){
-//            session.getAttribute(e.getMessage());
-            e.printStackTrace();
-            throw e;
+            return userDB;
         }
 
+        throw new RuntimeException("登录失败 =_= ");
     }
 
 }
