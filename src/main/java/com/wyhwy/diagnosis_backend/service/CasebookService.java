@@ -9,4 +9,5 @@ public interface CasebookService {
     HttpResult<ResultPage<Casebook>> page(Integer current, Integer size);
     void create(Casebook casebook);
     void update(Casebook casebook);
+    void del(Integer id);
 }

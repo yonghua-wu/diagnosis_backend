@@ -29,6 +29,7 @@ public interface CasebookMapper {
 
     void create(Casebook casebook);
     void update(Casebook casebook);
+    void del(Integer id);
 //
 //    /**
 //     * 创建

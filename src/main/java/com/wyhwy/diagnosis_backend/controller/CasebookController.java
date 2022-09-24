@@ -42,4 +42,13 @@ public class CasebookController {
             return new HttpResult<>(500, "更新病例失败" + e.toString());
         }
     }
+    @DeleteMapping("/del")
+    private HttpResult<NullPointerException> del(@RequestParam Integer id) {
+        try {
+            casebookService.del(id);
+            return new HttpResult<>();
+        } catch (Exception e) {
+            return new HttpResult<>(500, "删除病例失败" + e.toString());
+        }
+    }
 }

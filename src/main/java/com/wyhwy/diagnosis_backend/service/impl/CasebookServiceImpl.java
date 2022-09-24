@@ -31,4 +31,7 @@ public class CasebookServiceImpl implements CasebookService {
     public void update(Casebook casebook) {
         casebookMapper.update(casebook);
     }
+    public void del(Integer id) {
+        casebookMapper.del(id);
+    }
 }
