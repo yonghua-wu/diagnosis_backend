@@ -1,4 +1,4 @@
-package com.wyhwy.diagnosis_backend.utils;
+package com.wyhwy.diagnosis_backend.interceptors.utils;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTCreator;

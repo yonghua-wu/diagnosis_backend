@@ -1,8 +1,10 @@
 package com.wyhwy.diagnosis_backend.mapper;
 
 import com.wyhwy.diagnosis_backend.domain.User;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface UserMapper {
 //    User selectById(int id);
 //    void insert(User user);

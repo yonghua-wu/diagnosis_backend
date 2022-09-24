@@ -11,5 +11,5 @@ public class Image extends Base{
     private String imageAddress;
     private Integer imageProperties;
     private Integer diagnosticStatus;
-    private ImageModel imageModel;
+//    private ImageModel imageModel;
 }

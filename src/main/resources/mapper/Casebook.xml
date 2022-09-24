@@ -73,11 +73,11 @@
                 remark = #{remark},
             </if>
         </set>
-        where id = #{id}
+        where id = #{id};
     </update>
 
     <delete id="del">
         DELETE FROM casebook
-        WHERE id=#{id};
+        WHERE id = #{id};
     </delete>
 </mapper>

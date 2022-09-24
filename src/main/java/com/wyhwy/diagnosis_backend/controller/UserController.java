@@ -1,22 +1,14 @@
 package com.wyhwy.diagnosis_backend.controller;
 
-import com.auth0.jwt.interfaces.DecodedJWT;
 import com.wyhwy.diagnosis_backend.HttpResult;
 import com.wyhwy.diagnosis_backend.domain.User;
 import com.wyhwy.diagnosis_backend.service.UserService;
-import com.wyhwy.diagnosis_backend.utils.JWTUtils;
-import org.apache.catalina.session.StandardSession;
+import com.wyhwy.diagnosis_backend.interceptors.utils.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
-
-
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionContext;
-import java.util.Enumeration;
 
 //@RestController  @RestController是@ResponseBody和@Controller的组合注解
 
