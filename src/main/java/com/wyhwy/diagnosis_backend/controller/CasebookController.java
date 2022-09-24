@@ -25,7 +25,7 @@ public class CasebookController {
         return casebookService.page(current, size);
     }
     @PostMapping("/create")
-    private HttpResult<NullPointerException> create(@RequestBody Casebook casebook) {
+    private HttpResult<Void> create(@RequestBody Casebook casebook) {
         try {
             casebookService.create(casebook);
             return new HttpResult<>();
@@ -34,7 +34,7 @@ public class CasebookController {
         }
     }
     @PostMapping("/update")
-    private HttpResult<NullPointerException> update(@RequestBody Casebook casebook) {
+    private HttpResult<Void> update(@RequestBody Casebook casebook) {
         try {
             casebookService.update(casebook);
             return new HttpResult<>();
@@ -43,7 +43,7 @@ public class CasebookController {
         }
     }
     @DeleteMapping("/del")
-    private HttpResult<NullPointerException> del(@RequestParam Integer id) {
+    private HttpResult<Void> del(@RequestParam Integer id) {
         try {
             casebookService.del(id);
             return new HttpResult<>();

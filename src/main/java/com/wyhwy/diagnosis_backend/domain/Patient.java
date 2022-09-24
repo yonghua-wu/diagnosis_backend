@@ -6,10 +6,11 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class Patient extends Base{
+    private Integer id;
     private String patientName;
     private Integer patientGender;
     private Integer patientAge;
     private String phoneNumber;
     private String pastHistory;
-    private User user;
+    private Integer userId;
 }
