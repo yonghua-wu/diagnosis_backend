@@ -4,7 +4,7 @@
 
 <mapper namespace = "com.wyhwy.diagnosis_backend.mapper.CasebookMapper">
 
-    <resultMap id="baseResultMap" type="com.wyhwy.diagnosis_backend.po.CasebookPo">
+    <resultMap id="baseResultMap" type="com.wyhwy.diagnosis_backend.domain.Casebook">
         <result column="id" property="id" />
         <result column="patient_description" property="patientDescription" />
         <result column="diagnostic_status" property="diagnosticStatus" />
@@ -12,6 +12,8 @@
         <result column="doctorAdvice" property="doctorAdvice" />
         <result column="ma_identification_result" property="maIdentificationResult" />
         <result column="doctor_advice" property="doctorAdvice" />
+        <result column="user_id" property="userId" />
+        <result column="patient_id" property="patientId" />
         <result column="remark" property="remark"/>
         <result column="created_by" property="createdBy"/>
         <result column="created_time" property="createdTime"/>
@@ -32,4 +34,45 @@
     <select id="count" resultType="Integer">
         SELECT COUNT(*) FROM casebook
     </select>
+    <insert id="create">
+        INSERT INTO casebook (patient_description,diagnostic_status,rvs_identification_result,ma_identification_result,doctor_advice,user_id,patient_id,created_time,created_by,updated_time,updated_by,remark)
+        VALUES (#{patientDescription},#{diagnosticStatus},#{rvsIdentificationResult},#{maIdentificationResult},#{doctorAdvice},#{userId},#{patientId},#{createdTime},#{createdBy},#{updatedTime},#{updatedBy},#{remark});
+    </insert>
+
+    <update id="update">
+        update casebook
+        <set >
+            <if test="patientDescription != null">
+                patient_description = #{patientDescription},
+            </if>
+            <if test="diagnosticStatus != null">
+                diagnostic_status = #{diagnosticStatus},
+            </if>
+            <if test="rvsIdentificationResult != null">
+                rvs_identification_result = #{rvsIdentificationResult},
+            </if>
+            <if test="maIdentificationResult != null">
+                ma_identification_result = #{maIdentificationResult},
+            </if>
+            <if test="doctorAdvice != null">
+                doctor_advice = #{doctorAdvice},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="patientId != null">
+                patient_id = #{patientId},
+            </if>
+            <if test="updatedTime != null">
+                updated_time = #{updatedTime},
+            </if>
+            <if test="updatedBy != null">
+                updated_by = #{updatedBy},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
 </mapper>

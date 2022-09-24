@@ -55,6 +55,7 @@ public class  UserController{
         } catch (Exception e) {
 //            map.put("state",false);
 //            map.put("msg",e.getMessage());
+            e.printStackTrace();
             HttpResult<String> httpRest = new HttpResult<String>();
             httpRest.setCode(403);
             httpRest.setMsg("登录失败，账号或密码错误");

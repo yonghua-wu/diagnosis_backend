@@ -1,7 +1,6 @@
 package com.wyhwy.diagnosis_backend.mapper;
 
 import com.wyhwy.diagnosis_backend.domain.Casebook;
-import com.wyhwy.diagnosis_backend.po.CasebookPo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -12,7 +11,7 @@ public interface CasebookMapper {
      * 根据Id查
      * @param id id
      */
-    CasebookPo findById(Integer id);
+    Casebook findById(Integer id);
 
     /**
      * 分页查询
@@ -20,13 +19,16 @@ public interface CasebookMapper {
      * @param len 页大小
      * @return 返回 list
      */
-    List<CasebookPo> select(Integer start, Integer len);
+    List<Casebook> select(Integer start, Integer len);
 
     /**
      * 统计条数
      * @return
      */
     Integer count();
+
+    void create(Casebook casebook);
+    void update(Casebook casebook);
 //
 //    /**
 //     * 创建

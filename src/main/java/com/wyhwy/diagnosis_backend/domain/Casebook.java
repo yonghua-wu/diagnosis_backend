@@ -11,6 +11,6 @@ public class Casebook extends Base{
     private String rvsIdentificationResult;
     private String maIdentificationResult;
     private String doctorAdvice;
-    private User user;
-    private Patient patient;
+    private Integer userId;
+    private Integer patientId;
 }
