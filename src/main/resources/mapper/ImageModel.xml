@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.wyhwy.diagnosis_backend.mapper.ImageModelMapper">
+
+<!--    <resultMap id="baseResultMap" type="com.wyhwy.diagnosis_backend.domain.ImageModel">-->
+<!--        <result column="id" property="id" />-->
+<!--        <result column="model_id" property="modelId" />-->
+<!--        <result column="image_id" property="imageId" />-->
+<!--        <result column="remark" property="remark"/>-->
+<!--        <result column="created_by" property="createdBy"/>-->
+<!--        <result column="created_time" property="createdTime"/>-->
+<!--        <result column="updated_by" property="updatedBy"/>-->
+<!--        <result column="updated_time" property="updatedTime"/>-->
+<!--    </resultMap>-->
+    <resultMap id="imageResultMap" type="com.wyhwy.diagnosis_backend.domain.Image">
+        <result column="id" property="id" />
+
+        <result column="casebook_id" property="casebookId" />
+        <result column="patient_id" property="patientId" />
+
+        <result column="image_address" property="imageAddress" />
+        <result column="image_properties" property="imageProperties" />
+        <result column="diagnostic_status" property="diagnosticStatus" />
+
+        <result column="create_by" property="createdBy" />
+        <result column="create_time" property="createTime" />
+        <result column="updated_by" property="updatedBy" />
+        <result column="updated_time" property="updatedTime" />
+    </resultMap>
+    <select id="findImagesByModelId" parameterType="Integer" resultType="imageResultMap">
+        SELECT * FROM image i, image_model im, model m WHERE
+    </select>
+    <select id="findModelsByImageId" parameterType="Integer">
+
+    </select>
+</mapper>

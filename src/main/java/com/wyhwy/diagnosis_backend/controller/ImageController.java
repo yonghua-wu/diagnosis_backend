@@ -29,7 +29,7 @@ public class ImageController {
             imageService.create(image);
             return new HttpResult<>();
         }catch (Exception e){
-            return new HttpResult<>(500, "创建病例失败" + e.toString());
+            return new HttpResult<>(500, "创建图像失败" + e.toString());
         }
     }
 
