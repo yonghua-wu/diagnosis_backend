@@ -29,10 +29,18 @@
         <result column="updated_by" property="updatedBy" />
         <result column="updated_time" property="updatedTime" />
     </resultMap>
-    <select id="findImagesByModelId" parameterType="Integer" resultType="imageResultMap">
-        SELECT * FROM image i, image_model im, model m WHERE
+    <resultMap id="modelResultMap" type="com.wyhwy.diagnosis_backend.domain.Model">
+        <result column="id" property="id" />
+        <result column="model_address" property="modelAddress" />
+        <result column="create_by" property="createdBy" />
+        <result column="create_time" property="createTime" />
+        <result column="updated_by" property="updatedBy" />
+        <result column="updated_time" property="updatedTime" />
+    </resultMap>
+    <select id="findImagesByModelId" parameterType="Integer" resultMap="imageResultMap">
+        SELECT i.* FROM image i, image_model im, model m WHERE im.model_id = #{id} AND im.image_id = i.id AND m.id = im.model_id
     </select>
-    <select id="findModelsByImageId" parameterType="Integer">
-
+    <select id="findModelsByImageId" parameterType="Integer" resultMap="modelResultMap">
+        SELECT m.* FROM model m, image_model im, image i WHERE im.image_id = #{id} AND im.model_id = m.id AND i.id = im.image_id
     </select>
 </mapper>

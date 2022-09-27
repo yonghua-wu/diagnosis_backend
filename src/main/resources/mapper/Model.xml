@@ -4,11 +4,20 @@
 
 <mapper namespace = "com.wyhwy.diagnosis_backend.mapper.ModelMapper">
 
-    <select id="findById" resultType="com.wyhwy.diagnosis_backend.domain.Model">
+    <resultMap id="modelResultMap" type="com.wyhwy.diagnosis_backend.domain.Model">
+        <result column="id" property="id" />
+        <result column="model_address" property="modelAddress" />
+        <result column="create_by" property="createdBy" />
+        <result column="create_time" property="createTime" />
+        <result column="updated_by" property="updatedBy" />
+        <result column="updated_time" property="updatedTime" />
+    </resultMap>
+
+    <select id="findById" resultMap="modelResultMap">
         SELECT * FROM model m WHERE m.id = #{id}
     </select>
 
-    <select id="select" resultType="com.wyhwy.diagnosis_backend.domain.Model">
+    <select id="select" resultMap="modelResultMap">
         SELECT * FROM model LIMIT #{start}, #{len}
     </select>
 
