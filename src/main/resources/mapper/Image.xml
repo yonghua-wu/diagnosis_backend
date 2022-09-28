@@ -13,6 +13,7 @@
         <result column="image_address" property="imageAddress" />
         <result column="image_properties" property="imageProperties" />
         <result column="diagnostic_status" property="diagnosticStatus" />
+        <result column="result_img" property="resultImg" />
 
         <result column="create_by" property="createdBy" />
         <result column="create_time" property="createTime" />
@@ -33,8 +34,8 @@
     </select>
 
     <insert id="create">
-        INSERT INTO image (casebook_id, patient_id, image_address, image_properties, diagnostic_status, created_time, created_by, updated_time, updated_by, remark)
-        VALUES(#{casebookId}, #{patientId}, #{imageAddress}, #{imageProperties}, #{diagnosticStatus}, #{createdTime}, #{createdBy}, #{updatedTime}, #{updatedBy}, #{remark})
+        INSERT INTO image (casebook_id, patient_id, image_address, image_properties, diagnostic_status, result_img, created_time, created_by, updated_time, updated_by, remark)
+        VALUES(#{casebookId}, #{patientId}, #{imageAddress}, #{imageProperties}, #{diagnosticStatus}, #{resultImg}, #{createdTime}, #{createdBy}, #{updatedTime}, #{updatedBy}, #{remark})
     </insert>
 
     <update id="update">
@@ -54,6 +55,9 @@
             </if>
             <if test="diagnosticStatus != null">
                 diagnostic_status = #{diagnosticStatus},
+            </if>
+            <if test="resultImg != null">
+                result_img = #{resultImg},
             </if>
             <if test="updatedTime != null">
                 updated_time = #{updatedTime},

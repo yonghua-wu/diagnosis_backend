@@ -13,6 +13,7 @@ public class Image extends Base{
     private String imageAddress;
     private Integer imageProperties;
     private Integer diagnosticStatus;
+    private String resultImg;
 //    private ImageModel imageModel;
 //    private List<Model> AllModel;
 }
