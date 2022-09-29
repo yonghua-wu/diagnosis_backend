@@ -1,6 +1,7 @@
 package com.wyhwy.diagnosis_backend.controller;
 
 import com.wyhwy.diagnosis_backend.HttpResult;
+import com.wyhwy.diagnosis_backend.ResultPage;
 import com.wyhwy.diagnosis_backend.domain.User;
 import com.wyhwy.diagnosis_backend.service.UserService;
 import com.wyhwy.diagnosis_backend.interceptors.utils.JWTUtils;
@@ -14,6 +15,7 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin
+@RequestMapping("user")
 public class  UserController{
 
     @Autowired
@@ -27,7 +29,7 @@ public class  UserController{
 //        return "ok";
 //    }
 
-    @PostMapping("/user/login")
+    @PostMapping("/login")
     public HttpResult<String> login(@RequestBody User user){
 
         System.out.print("用户名："+user.getUsername());
@@ -52,6 +54,43 @@ public class  UserController{
             httpRest.setCode(403);
             httpRest.setMsg("登录失败，账号或密码错误");
             return httpRest;
+        }
+    }
+
+    @GetMapping("detail")
+    public HttpResult<User> detail(@RequestParam Integer id) {
+        return new HttpResult<>(userService.findById(id));
+    }
+    @GetMapping("page")
+    public HttpResult<ResultPage<User>> page(@RequestParam Integer current,@RequestParam Integer size) {
+        return new HttpResult<>(userService.page(current, size));
+    }
+    @PostMapping("create")
+    public HttpResult<Void> create(@RequestBody User User) {
+        try {
+            // System.out.println(User.toString());
+            userService.create(User);
+            return new HttpResult<>();
+        } catch (Exception e) {
+            return new HttpResult<>(500, "创建医生失败" + e.toString());
+        }
+    }
+    @PostMapping("update")
+    public HttpResult<Void> update(@RequestBody User User) {
+        try {
+            userService.update(User);
+            return new HttpResult<>();
+        } catch (Exception e) {
+            return new HttpResult<>(500, "更新医生失败" + e.toString());
+        }
+    }
+    @DeleteMapping("del")
+    public HttpResult<Void> del(@RequestParam Integer id) {
+        try {
+            userService.del(id);
+            return new HttpResult<>();
+        } catch (Exception e) {
+            return new HttpResult<>(500, "删除医生失败" + e.toString());
         }
     }
 

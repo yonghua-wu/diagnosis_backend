@@ -12,6 +12,7 @@ import java.io.File;
 
 
 @RestController
+@CrossOrigin
 @RequestMapping("/image")
 public class ImageController {
 

@@ -4,13 +4,21 @@
 
 <mapper namespace = "com.wyhwy.diagnosis_backend.mapper.UserMapper">
 
-<!--    <resultMap id="BaseResultMap" type="com.wyhwy.diagnosis_backend.User" >-->
-<!--        <id column="id" property="id" />-->
-<!--        <result column="username" property="username" />-->
-<!--        <result column="password" property="password" />-->
-<!--        <result column="professional_title" property="professionalTitle" />-->
-<!--        <result column="phone" property="phone" javaType="String" />-->
-<!--    </resultMap>-->
+    <resultMap id="BaseResultMap" type="com.wyhwy.diagnosis_backend.domain.User" >
+       <id column="id" property="id" />
+       <result column="username" property="username" />
+       <result column="password" property="password" />
+       <result column="work_experience" property="workExperience" />
+       <result column="title" property="title" />
+       <result column="real_name" property="realName" />
+       <result column="gender" property="gender" />
+
+       <result column="remark" property="remark" />
+       <result column="created_by" property="createdBy" />
+       <result column="created_time" property="createdTime" />
+       <result column="updated_by" property="updatedBy" />
+       <result column="updated_time" property="updatedTime" />
+    </resultMap>
 
 <!--    <select id="findByUsername" resultType="com.wyhwy.diagnosis_backend.User">-->
 <!--        SELECT * FROM user WHERE username=#{username}-->
@@ -20,13 +28,71 @@
 <!--        SELECT * FROM user WHERE id=#{id}-->
 <!--    </select>-->
 
-    <select id="login" resultType="com.wyhwy.diagnosis_backend.domain.User">
+    <select id="login" resultType="com.wyhwy.diagnosis_backend.domain.User" resultMap="BaseResultMap">
         SELECT * FROM user u WHERE u.username = #{username} and u.password = #{password}
     </select>
 
+    <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT
+        *
+        FROM
+        user b
+        WHERE
+        b.id = #{id}
+    </select>
+    <select id="select" resultMap="BaseResultMap">
+        SELECT * FROM user LIMIT #{start}, #{len}
+    </select>
+    <select id="count" resultType="Integer">
+        SELECT COUNT(*) FROM user
+    </select>
+    <insert id="create">
+        INSERT INTO user (username,password,gender,work_experience,title,real_name,created_time,created_by,updated_time,updated_by,remark)
+    	VALUES (#{username},#{password},#{gender},#{workExperience},#{title},#{realName},#{createdTime},#{createdBy},#{updatedTime},#{updatedBy},#{remark});
+    </insert>
 
+    <update id="update">
+        update user
+        <set >
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="gender != null">
+                gender = #{gender},
+            </if>
+            <if test="workExperience != null">
+                work_experience = #{workExperience},
+            </if>
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="realName != null">
+                real_name = #{realName},
+            </if>
+            <if test="createdTime != null">
+                created_time = #{createdTime},
+            </if>
+            <if test="createdBy != null">
+                created_by = #{createdBy},
+            </if>
+            <if test="updatedTime != null">
+                updated_time = #{updatedTime},
+            </if>
+            <if test="updatedBy != null">
+                updated_by = #{updatedBy},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
 
-<!--    <insert id="insert" parameterType="com.wyhwy.diagnosis_backend.User">-->
-<!--        INSERT INTO user_table (username, password, professional_title, phone) VALUES (#{username}, #{password}, #{professionalTitle}, #{phone})-->
-<!--    </insert>-->
+    <delete id="del">
+        DELETE FROM user
+        WHERE id=#{id};
+    </delete>
 </mapper>
