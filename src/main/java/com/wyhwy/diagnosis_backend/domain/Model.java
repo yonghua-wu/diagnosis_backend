@@ -9,6 +9,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 public class Model extends Base {
     private String modelAddress;
+    private String name;
     // private ImageModel imageModel;
 //    private List<Image> AllImage;
 }

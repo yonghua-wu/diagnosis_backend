@@ -5,9 +5,9 @@ import com.wyhwy.diagnosis_backend.ResultPage;
 import com.wyhwy.diagnosis_backend.domain.Casebook;
 
 public interface CasebookService {
-    HttpResult<Casebook> findById(Integer id);
-    HttpResult<ResultPage<Casebook>> page(Integer current, Integer size);
-    void create(Casebook casebook);
-    void update(Casebook casebook);
+    Casebook findById(Integer id);
+    ResultPage<Casebook> page(Integer current, Integer size);
+    Integer create(Casebook casebook);
+    Integer update(Casebook casebook);
     void del(Integer id);
 }

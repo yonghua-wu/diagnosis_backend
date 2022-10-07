@@ -34,12 +34,12 @@
     <select id="count" resultType="Integer">
         SELECT COUNT(*) FROM casebook
     </select>
-    <insert id="create">
+    <insert id="create" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO casebook (patient_description,diagnostic_status,rvs_identification_result,ma_identification_result,doctor_advice,user_id,patient_id,created_time,created_by,updated_time,updated_by,remark)
         VALUES (#{patientDescription},#{diagnosticStatus},#{rvsIdentificationResult},#{maIdentificationResult},#{doctorAdvice},#{userId},#{patientId},#{createdTime},#{createdBy},#{updatedTime},#{updatedBy},#{remark});
     </insert>
 
-    <update id="update">
+    <update id="update" useGeneratedKeys="true" keyProperty="id">
         update casebook
         <set >
             <if test="patientDescription != null">

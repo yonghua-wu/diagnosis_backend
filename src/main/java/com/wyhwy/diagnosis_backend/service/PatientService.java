@@ -6,7 +6,7 @@ import com.wyhwy.diagnosis_backend.domain.Patient;
 public interface PatientService {
     Patient findById(Integer id);
     ResultPage<Patient> page(Integer current, Integer size);
-    void create(Patient patient);
-    void update(Patient patient);
+    Integer create(Patient patient);
+    Integer update(Patient patient);
     void del(Integer id);
 }

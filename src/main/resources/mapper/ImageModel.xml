@@ -4,21 +4,23 @@
 
 <mapper namespace = "com.wyhwy.diagnosis_backend.mapper.ImageModelMapper">
 
-<!--    <resultMap id="baseResultMap" type="com.wyhwy.diagnosis_backend.domain.ImageModel">-->
-<!--        <result column="id" property="id" />-->
-<!--        <result column="model_id" property="modelId" />-->
-<!--        <result column="image_id" property="imageId" />-->
-<!--        <result column="remark" property="remark"/>-->
-<!--        <result column="created_by" property="createdBy"/>-->
-<!--        <result column="created_time" property="createdTime"/>-->
-<!--        <result column="updated_by" property="updatedBy"/>-->
-<!--        <result column="updated_time" property="updatedTime"/>-->
-<!--    </resultMap>-->
+   <resultMap id="baseResultMap" type="com.wyhwy.diagnosis_backend.domain.ImageModel">
+       <result column="id" property="id" />
+       <result column="model_id" property="modelId" />
+       <result column="image_id" property="imageId" />
+       <result column="result_address" property="resultAddress" />
+       <result column="remark" property="remark"/>
+       <result column="created_by" property="createdBy"/>
+       <result column="created_time" property="createdTime"/>
+       <result column="updated_by" property="updatedBy"/>
+       <result column="updated_time" property="updatedTime"/>
+   </resultMap>
     <resultMap id="imageResultMap" type="com.wyhwy.diagnosis_backend.domain.Image">
         <result column="id" property="id" />
 
         <result column="casebook_id" property="casebookId" />
         <result column="patient_id" property="patientId" />
+        <result column="image_address" property="imageAddress" />
 
         <result column="image_address" property="imageAddress" />
         <result column="image_properties" property="imageProperties" />
@@ -43,4 +45,11 @@
     <select id="findModelsByImageId" parameterType="Integer" resultMap="modelResultMap">
         SELECT m.* FROM model m, image_model im, image i WHERE im.image_id = #{id} AND im.model_id = m.id AND i.id = im.image_id
     </select>
+    <select id="findListByImageId" parameterType="Integer" resultMap="baseResultMap">
+        SELECT * FROM image_model WHERE image_id = #{id}
+    </select>
+    <insert id="create" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO image_model (model_id,image_id,created_time,created_by,updated_time,updated_by,remark)
+	    VALUES (#{modelId},#{imageId},#{createdTime},#{createdBy},#{updatedTime},#{updatedBy},#{remark});
+    </insert>
 </mapper>

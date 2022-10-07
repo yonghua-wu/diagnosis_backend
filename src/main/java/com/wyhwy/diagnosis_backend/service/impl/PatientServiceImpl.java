@@ -24,11 +24,13 @@ public class PatientServiceImpl implements PatientService {
         ResultPage<Patient> page = new ResultPage<>(current, size, count, list);
         return page;
     }
-    public void create(Patient patient) {
+    public Integer create(Patient patient) {
         patientMapper.create(patient);
+        return patient.getId();
     }
-    public void update(Patient patient) {
+    public Integer update(Patient patient) {
         patientMapper.update(patient);
+        return patient.getId();
     }
     public void del(Integer id) {
         patientMapper.del(id);

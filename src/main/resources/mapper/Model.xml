@@ -7,6 +7,7 @@
     <resultMap id="modelResultMap" type="com.wyhwy.diagnosis_backend.domain.Model">
         <result column="id" property="id" />
         <result column="model_address" property="modelAddress" />
+        <result column="name" property="name" />
         <result column="create_by" property="createdBy" />
         <result column="create_time" property="createTime" />
         <result column="updated_by" property="updatedBy" />
@@ -25,13 +26,16 @@
         SELECT COUNT(*) FROM model
     </select>
 
-    <insert id="create">
-        INSERT INTO model (model_address, created_time, created_by, updated_time, updated_by, remark)
-        VALUES(#{modelAddress}, #{createdTime}, #{createdBy}, #{updatedTime}, #{updatedBy}, #{remark})
+    <insert id="create" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO model (model_address, name, created_time, created_by, updated_time, updated_by, remark)
+        VALUES(#{modelAddress}, #{name}, #{createdTime}, #{createdBy}, #{updatedTime}, #{updatedBy}, #{remark})
     </insert>
-    <update id="update">
+    <update id="update" useGeneratedKeys="true" keyProperty="id">
         UPDATE model
         <set >
+            <if test="name != null">
+                name = #{name},
+            </if>
             <if test="modelAddress != null">
                 model_address = #{modelAddress},
             </if>

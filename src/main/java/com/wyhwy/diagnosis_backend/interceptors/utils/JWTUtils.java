@@ -18,7 +18,6 @@ public class JWTUtils {
     private static final String SING = "HENGYANG";
 
     public static String getToken(Map<String, String> map) {
-
         Calendar instance = Calendar.getInstance();
         // 默认7天过期
         instance.add(Calendar.DATE, 7);
@@ -45,9 +44,9 @@ public class JWTUtils {
     /**
      * 获取token信息方法
      */
-    /*public static DecodedJWT getTokenInfo(String token){
+    public static DecodedJWT getTokenInfo(String token){
         DecodedJWT verify = JWT.require(Algorithm.HMAC256(SING)).build().verify(token);
         return verify;
-    }*/
+    }
 }
 

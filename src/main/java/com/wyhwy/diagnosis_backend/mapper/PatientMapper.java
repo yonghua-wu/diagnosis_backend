@@ -2,8 +2,11 @@ package com.wyhwy.diagnosis_backend.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.wyhwy.diagnosis_backend.domain.Patient;
 
+@Mapper
 public interface PatientMapper {
     /**
      * 根据Id查

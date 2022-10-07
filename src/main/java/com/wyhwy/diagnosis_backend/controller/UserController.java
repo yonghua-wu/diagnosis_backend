@@ -1,8 +1,10 @@
 package com.wyhwy.diagnosis_backend.controller;
 
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.wyhwy.diagnosis_backend.HttpResult;
 import com.wyhwy.diagnosis_backend.ResultPage;
 import com.wyhwy.diagnosis_backend.domain.User;
+import com.wyhwy.diagnosis_backend.domain.UserLoginInfo;
 import com.wyhwy.diagnosis_backend.service.UserService;
 import com.wyhwy.diagnosis_backend.interceptors.utils.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,7 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin
-@RequestMapping("user")
+@RequestMapping("/api/user")
 public class  UserController{
 
     @Autowired
@@ -39,11 +41,15 @@ public class  UserController{
 
         try {
             User userDB = userService.login(user);
-            Map<String, String> payload = new HashMap<>();  // payload
-            payload.put("id",Integer.toString(userDB.getId()));
-            payload.put("name",userDB.getUsername());
+            UserLoginInfo userLoginInfo = new UserLoginInfo();
+            userLoginInfo.setId(userDB.getId());
+            userLoginInfo.setUsername(userDB.getUsername());
+            userLoginInfo.setRealName(userDB.getRealName());
+            userLoginInfo.setTitle(userDB.getTitle());
+            userLoginInfo.setWorkExperience(userDB.getWorkExperience());
+            userLoginInfo.setGender(userDB.getGender());
             // 生成jwt令牌
-            String token = JWTUtils.getToken(payload);
+            String token = JWTUtils.getToken(userLoginInfo.toMap());
             HttpResult<String> httpRest = new HttpResult<String>(token);
             return httpRest;
         } catch (Exception e) {
@@ -93,7 +99,18 @@ public class  UserController{
             return new HttpResult<>(500, "删除医生失败" + e.toString());
         }
     }
-
+    @GetMapping("info")
+    public HttpResult<UserLoginInfo> info(@RequestHeader(value = "token",required = false) String token) {
+        UserLoginInfo userLoginInfo = new UserLoginInfo();
+        DecodedJWT verify = JWTUtils.getTokenInfo(token);
+        userLoginInfo.setId(Integer.parseInt(verify.getClaim("id").asString()));
+        userLoginInfo.setUsername(verify.getClaim("username").asString());
+        userLoginInfo.setRealName(verify.getClaim("realName").asString());
+        userLoginInfo.setGender(Integer.parseInt(verify.getClaim("gender").asString()));
+        userLoginInfo.setTitle(Integer.parseInt(verify.getClaim("title").asString()));
+        userLoginInfo.setWorkExperience(Integer.parseInt(verify.getClaim("workExperience").asString()));
+        return new HttpResult<>(userLoginInfo);
+    }
 }
 
 

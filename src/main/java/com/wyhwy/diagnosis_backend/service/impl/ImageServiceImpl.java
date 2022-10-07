@@ -3,6 +3,7 @@ package com.wyhwy.diagnosis_backend.service.impl;
 import com.wyhwy.diagnosis_backend.HttpResult;
 import com.wyhwy.diagnosis_backend.ResultPage;
 import com.wyhwy.diagnosis_backend.domain.Image;
+import com.wyhwy.diagnosis_backend.domain.ImageVo;
 import com.wyhwy.diagnosis_backend.domain.Model;
 import com.wyhwy.diagnosis_backend.mapper.ImageMapper;
 import com.wyhwy.diagnosis_backend.mapper.ImageModelMapper;
@@ -22,31 +23,44 @@ public class ImageServiceImpl implements ImageService {
     private ImageModelMapper imageModelMapper;
 
     @Override
-    public HttpResult<Image> findById(Integer id) {
+    public Image findById(Integer id) {
         Image img = imageMapper.findById(id);
         Integer imgId = img.getId();
         for (Model model : imageModelMapper.findModelsByImageId(imgId)) {
             System.out.println(model.getModelAddress());
         }
-        return new HttpResult<Image>(img);
+        return img;
     }
 
     @Override
-    public HttpResult<ResultPage<Image>> page(Integer current, Integer size) {
+    public List<ImageVo> findByCasebookId(Integer casebookId) {
+        List<Image> images = imageMapper.findByCasebookId(casebookId);
+        List<ImageVo> imageVos = ImageVo.convert(images);
+        for(ImageVo imageVo : imageVos){
+            Integer imgId = imageVo.getId();
+            imageVo.setImageModels(imageModelMapper.findListByImageId(imgId));
+        }
+        return imageVos;
+    }
+
+    @Override
+    public ResultPage<Image> page(Integer current, Integer size) {
         List<Image> list = imageMapper.select((current - 1) * size, size);
         int count = imageMapper.count();
         ResultPage<Image> page = new ResultPage<>(current, size, count, list);
-        return new HttpResult<>(page);
+        return page;
     }
 
     @Override
-    public void create(Image image) {
+    public Integer create(Image image) {
         imageMapper.create(image);
+        return image.getId();
     }
 
     @Override
-    public void update(Image image) {
+    public Integer update(Image image) {
         imageMapper.update(image);
+        return image.getId();
     }
 
     @Override

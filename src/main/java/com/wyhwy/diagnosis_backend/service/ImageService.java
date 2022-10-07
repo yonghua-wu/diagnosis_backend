@@ -1,18 +1,23 @@
 package com.wyhwy.diagnosis_backend.service;
 
+import java.util.List;
+
 import com.wyhwy.diagnosis_backend.HttpResult;
 import com.wyhwy.diagnosis_backend.ResultPage;
 import com.wyhwy.diagnosis_backend.domain.Image;
+import com.wyhwy.diagnosis_backend.domain.ImageVo;
 
 public interface ImageService {
 
-    HttpResult<Image> findById(Integer id);
+    Image findById(Integer id);
 
-    HttpResult<ResultPage<Image>> page(Integer current, Integer size);
+    List<ImageVo> findByCasebookId(Integer casebookIds);
 
-    void create(Image image);
+    ResultPage<Image> page(Integer current, Integer size);
 
-    void update(Image image);
+    Integer create(Image image);
+
+    Integer update(Image image);
 
     void del(Integer id);
 

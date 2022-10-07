@@ -25,6 +25,10 @@
         SELECT * FROM image img WHERE img.id = #{id}
     </select>
 
+    <select id="findByCasebookId" parameterType="java.lang.Integer" resultMap="baseResultMap">
+        SELECT * FROM image img WHERE img.casebook_id = #{id}
+    </select>
+
     <select id="select" resultMap="baseResultMap">
         SELECT * FROM image LIMIT #{start}, #{len}
     </select>
@@ -33,12 +37,12 @@
         SELECT COUNT(*) FROM casebook
     </select>
 
-    <insert id="create">
+    <insert id="create" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO image (casebook_id, patient_id, image_address, image_properties, diagnostic_status, result_img, created_time, created_by, updated_time, updated_by, remark)
         VALUES(#{casebookId}, #{patientId}, #{imageAddress}, #{imageProperties}, #{diagnosticStatus}, #{resultImg}, #{createdTime}, #{createdBy}, #{updatedTime}, #{updatedBy}, #{remark})
     </insert>
 
-    <update id="update">
+    <update id="update" useGeneratedKeys="true" keyProperty="id">
         UPDATE image
         <set >
             <if test="casebookId != null">

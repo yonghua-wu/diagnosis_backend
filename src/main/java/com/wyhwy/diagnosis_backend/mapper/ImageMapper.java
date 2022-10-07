@@ -11,6 +11,8 @@ public interface ImageMapper {
 
     List<Image> select(Integer start, Integer len);
 
+    List<Image> findByCasebookId(Integer casebookId);
+
     Integer count();
 
     void create(Image image);

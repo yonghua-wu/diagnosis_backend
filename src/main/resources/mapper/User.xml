@@ -46,12 +46,12 @@
     <select id="count" resultType="Integer">
         SELECT COUNT(*) FROM user
     </select>
-    <insert id="create">
+    <insert id="create" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO user (username,password,gender,work_experience,title,real_name,created_time,created_by,updated_time,updated_by,remark)
     	VALUES (#{username},#{password},#{gender},#{workExperience},#{title},#{realName},#{createdTime},#{createdBy},#{updatedTime},#{updatedBy},#{remark});
     </insert>
 
-    <update id="update">
+    <update id="update" useGeneratedKeys="true" keyProperty="id">
         update user
         <set >
             <if test="username != null">
