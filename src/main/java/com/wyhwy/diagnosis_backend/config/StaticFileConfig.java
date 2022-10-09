@@ -8,6 +8,7 @@ public class StaticFileConfig extends WebMvcConfigurationSupport {
     @Override
     protected void addResourceHandlers(org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("file:uploadFile/");
+        registry.addResourceHandler("/**").addResourceLocations("file:webStatic/");
         super.addResourceHandlers(registry);
     }
     

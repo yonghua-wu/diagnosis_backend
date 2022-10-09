@@ -6,7 +6,6 @@ import com.wyhwy.diagnosis_backend.ResultPage;
 import com.wyhwy.diagnosis_backend.domain.Casebook;
 import com.wyhwy.diagnosis_backend.domain.CasebookDetailVo;
 import com.wyhwy.diagnosis_backend.domain.CasebookVo;
-import com.wyhwy.diagnosis_backend.domain.Image;
 import com.wyhwy.diagnosis_backend.domain.ImageVo;
 import com.wyhwy.diagnosis_backend.domain.Patient;
 import com.wyhwy.diagnosis_backend.domain.User;
